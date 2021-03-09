@@ -1,5 +1,6 @@
 import parse from "url-parse";
 import crypto from "crypto";
+import axios from "axios";
 
 function sha256(buffer) {
   return crypto.createHash("sha256").update(buffer).digest();
@@ -51,23 +52,20 @@ class PKCEClient {
       code_verifier: verifier,
       client_id: clientId,
       code,
-      ...this.extraParams
-    }
+      ...extraParams,
+    };
 
-    const body = Object.keys(params).map(key => `${key}=${params[key]}`).join("&");
+    const body = Object.keys(params)
+      .map((key) => `${key}=${params[key]}`)
+      .join("&");
 
-    const result = await fetch(`${issuer}/oauth/token`, {
-      method: "POST",
+    const result = await axios.post(`${issuer}/oauth/token`, body, {
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
-        origin: "http://localhost:3000",
       },
-      body,
     });
 
-    if (result.ok) return result.json();
-
-    throw Error(result.statusText);
+    return result.data;
   }
 
   extractCode(resultUrl) {

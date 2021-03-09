@@ -6,25 +6,19 @@ chrome.runtime.onMessage.addListener(function (event) {
     };
 
     const auth = new OdinChrome(env.ODIN_ISSUER, env.ODIN_CLIENT_ID, {
-      resource: env.ODIN_AUDIENCE
+      resource: env.ODIN_AUDIENCE,
     });
     auth
       .authenticate(options)
       .then(function (authResult) {
         console.log(authResult);
-
-        auth
-          .exchangeCodeForToken(authResult.code, authResult.secret)
-          .then((result) => {
-            localStorage.setItem("authResult", JSON.stringify(result));
-
-            chrome.notifications.create({
-              type: "basic",
-              iconUrl: "icons/icon128.png",
-              title: "Login Successful",
-              message: "You can use the app now",
-            });
-          });
+        localStorage.setItem("authResult", JSON.stringify(authResult));
+        chrome.notifications.create({
+          type: "basic",
+          iconUrl: "icons/icon128.png",
+          title: "Login Successful",
+          message: "You can use the app now",
+        });
       })
       .catch(function (err) {
         console.log(err);

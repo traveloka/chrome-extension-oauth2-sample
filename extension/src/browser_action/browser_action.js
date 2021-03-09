@@ -40,10 +40,8 @@ function main () {
   const authResult = JSON.parse(localStorage.authResult || '{}');
   console.log(authResult);
   if (authResult.access_token) {
-    console.log("main.acc")
     renderProfileView(authResult);
   } else {
-    console.log("main.else")
     renderDefaultView();
   }
 }
