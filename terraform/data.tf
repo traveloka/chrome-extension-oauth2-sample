@@ -10,6 +10,6 @@ data "template_file" "apigw" {
   template = "${file("${path.module}/templates/apigw.json")}"
 
   vars = {
-    authorizer_lambda = "${module.authorizer_lambda.lambda_arn}"
+    authorizer_lambda = "${module.authorizer_lambda.lambda_name}"
   }
 }

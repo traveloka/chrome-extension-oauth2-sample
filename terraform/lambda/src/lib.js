@@ -66,5 +66,5 @@ module.exports.authenticate = (params) => {
         cache: true,
         rateLimit: true,
         jwksRequestsPerMinute: 10, // Default value
-        jwksUri: `${process.env.ISSUER}.well-known/jwks.json`
+        jwksUri: `${process.env.TOKEN_ISSUER}.well-known/jwks.json`
   });
