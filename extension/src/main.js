@@ -5,8 +5,8 @@ chrome.runtime.onMessage.addListener(function (event, sender, sendResponse) {
       device: "chrome-extension",
     };
 
-    const auth = new OdinChrome(env.ODIN_ISSUER, env.ODIN_CLIENT_ID, {
-      resource: env.ODIN_AUDIENCE,
+    const auth = new OauthChrome(env.OAUTH2_ISSUER, env.OAUTH2_CLIENT_ID, {
+      resource: env.OAUTH2_AUDIENCE,
     });
     
     auth
@@ -33,25 +33,23 @@ chrome.runtime.onMessage.addListener(function (event, sender, sendResponse) {
         });
       });
   } else if (event.type === "logout") {
-    const authResult = JSON.parse(localStorage.authResult || "{}");
+    // const authResult = JSON.parse(localStorage.authResult || "{}");
 
-    const options = {
-      interactive: true,
-      url:
-        "https://identity.ath.staging-traveloka.com/session/end?post_logout_redirect_uri=" +
-        encodeURIComponent(chrome.identity.getRedirectURL("odin/logout")) +
-        "&id_token_hint=" +
-        authResult.id_token,
-    };
-    chrome.identity.launchWebAuthFlow(options, function (redirectUri) {
-      chrome.notifications.create({
-        type: "basic",
-        title: "Logout Successful",
-        message: "You can re-login to use the app now",
-        iconUrl: "icons/icon128.png",
-      });
-      sendResponse({ success: true });
-    });
+    // const options = {
+    //   interactive: true,
+    //   url: `${env.OAUTH2_ISSUER}/v2/logout?client_id`,
+    // };
+    // chrome.identity.launchWebAuthFlow(options, function (redirectUri) {
+    //   chrome.notifications.create({
+    //     type: "basic",
+    //     title: "Logout Successful",
+    //     message: "You can re-login to use the app now",
+    //     iconUrl: "icons/icon128.png",
+    //   });
+    //   sendResponse({ success: true });
+    // });
+
+    sendResponse({ success: true });
   }
 
   return true;

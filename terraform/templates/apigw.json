@@ -83,7 +83,7 @@
         },
         "security": [
           {
-            "petstore-odin-authorizer": []
+            "petstore-oauth-authorizer": []
           }
         ],
         "x-amazon-apigateway-integration": {
@@ -138,7 +138,7 @@
         },
         "security": [
           {
-            "petstore-odin-authorizer": []
+            "petstore-oauth-authorizer": []
           }
         ],
         "x-amazon-apigateway-integration": {
@@ -230,7 +230,7 @@
         },
         "security": [
           {
-            "petstore-odin-authorizer": []
+            "petstore-oauth-authorizer": []
           }
         ],
         "x-amazon-apigateway-integration": {
@@ -306,7 +306,7 @@
     }
   },
   "securityDefinitions": {
-    "petstore-odin-authorizer": {
+    "petstore-oauth-authorizer": {
       "type": "apiKey",
       "name": "Authorization",
       "in": "header",

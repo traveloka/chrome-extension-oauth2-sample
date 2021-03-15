@@ -7,7 +7,7 @@ locals {
   authorizer_lambda_name = "authorizer"
 
   authorizer_environment_variables = {
-    TOKEN_ISSUER = "https://identity.ath.staging-traveloka.com/"
+    TOKEN_ISSUER = "https://tvlk-dev.auth0.com/"
     AUDIENCE     = "https://tvlk/fprcred"
   }
 }

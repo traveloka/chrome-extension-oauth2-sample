@@ -6,7 +6,7 @@ const common = {
 
   output: {
     path: path.resolve(__dirname, './dist'),
-    library: 'OdinChrome',
+    library: 'OauthChrome',
     libraryTarget: 'umd',
     libraryExport: 'default',
     filename: '[name].js'

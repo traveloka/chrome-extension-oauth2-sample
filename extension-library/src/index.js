@@ -41,7 +41,7 @@ class PKCEClient {
   }
 
   getRedirectURL() {
-    return chrome.identity.getRedirectURL("odin");
+    return chrome.identity.getRedirectURL("oauth2");
   }
 
   async exchangeCodeForToken(code, verifier) {
