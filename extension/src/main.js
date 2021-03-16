@@ -6,7 +6,7 @@ chrome.runtime.onMessage.addListener(function (event, sender, sendResponse) {
     };
 
     const auth = new OauthChrome(env.OAUTH2_ISSUER, env.OAUTH2_CLIENT_ID, {
-      resource: env.OAUTH2_AUDIENCE,
+      audience: env.OAUTH2_AUDIENCE,
     });
     
     auth
