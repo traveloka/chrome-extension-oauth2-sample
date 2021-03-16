@@ -79,7 +79,7 @@ class PKCEClient {
   }
 
   async authenticate(options = {}, interactive = true) {
-    const { issuer, clientId } = this;
+    const { issuer, clientId, extraParams } = this;
     const { secret, hashed } = generateRandomChallengePair();
 
     Object.assign(options, {
@@ -88,6 +88,7 @@ class PKCEClient {
       redirect_uri: this.getRedirectURL(),
       code_challenge_method: "S256",
       response_type: "code",
+      ...extraParams
     });
 
     const url = `${issuer}/authorize?${qs.stringify(options)}`;
